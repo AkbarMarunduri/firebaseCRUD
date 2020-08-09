@@ -61,7 +61,7 @@ public class MahasiswaAdaptor extends BaseAdapter {
         }
         void bind(Mahasiswa mahasiswa){
             txtNama.setText(mahasiswa.getNama());
-            txtNim.setText(mahasiswa.getId());
+            txtNim.setText(mahasiswa.getNim());
         }
     }
 }

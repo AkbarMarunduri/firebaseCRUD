@@ -3,6 +3,7 @@ package com.akbarprojec.firebasecrud.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,10 +38,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listView = findViewById(R.id.lvList);
         btAdd.setOnClickListener(this);
 
-        mReference = FirebaseDatabase.getInstance().getReference("guru");
+        mReference = FirebaseDatabase.getInstance().getReference("mahasiswa");
         mahasiswaArrayList = new ArrayList<>();
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this,UpdateData.class);
+                intent.putExtra(UpdateData.EXTRA_MAHASISWA, mahasiswaArrayList.get(i));
+                startActivity(intent);
+            }
+        });
+
     }
+
 
     @Override
     protected void onStart() {
@@ -65,10 +76,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btAdd) {
-
             Intent intent = new Intent(this, CreatedActivity.class);
             startActivity(intent);
         }

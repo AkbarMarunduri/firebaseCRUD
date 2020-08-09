@@ -50,8 +50,8 @@ public class Mahasiswa implements Parcelable {
     @Override
     public void writeToParcel(Parcel desc, int flag) {
         desc.writeString(this.id);
-        desc.writeString(this.nama);
         desc.writeString(this.nim);
+        desc.writeString(this.nama);
         desc.writeString(this.foto);
     }
 

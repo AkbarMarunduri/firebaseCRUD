@@ -33,6 +33,7 @@ private EditText edNim, edNama;
         edNama = findViewById(R.id.edt_nama);
         btSave = findViewById(R.id.btn_save);
 
+
         btSave.setOnClickListener(this);
 
         mahasiswa = new Mahasiswa();
