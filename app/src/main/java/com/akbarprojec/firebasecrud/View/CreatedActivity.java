@@ -1,4 +1,4 @@
-package com.akbarprojec.firebasecrud;
+package com.akbarprojec.firebasecrud.View;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,10 +8,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.akbarprojec.firebasecrud.Model.Mahasiswa;
+import com.akbarprojec.firebasecrud.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -63,7 +62,7 @@ private EditText edNim, edNama;
 
         if (!isEmptyField) {
             Toast.makeText(CreatedActivity.this, "Save Data....!!", Toast.LENGTH_SHORT).show();
-            DatabaseReference dbMahasiswa = mDatabase.child("guru");
+            DatabaseReference dbMahasiswa = mDatabase.child("mahasiswa");
 
             String id = dbMahasiswa.push().getKey();
             mahasiswa.setId(id);
