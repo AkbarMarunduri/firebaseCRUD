@@ -105,7 +105,7 @@ public class UpdateData extends AppCompatActivity implements View.OnClickListene
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
                 case R.id.action_delete:
-                    showAlertDialog(ALERT_DIALOG_CLOSE);
+                    showAlertDialog(ALERT_DIALOG_DELETE);
                     break;
                 case android.R.id.home:
                     showAlertDialog(ALERT_DIALOG_CLOSE);
@@ -142,6 +142,10 @@ public class UpdateData extends AppCompatActivity implements View.OnClickListene
                             finish();
                         } else {
                             //hapus daata
+                            DatabaseReference dbMahasiswa = mReference.child("mahasiswa").child(mahasiswaID);
+                            dbMahasiswa.removeValue();
+                            Toast.makeText(UpdateData.this, "Data sudah dihapus", Toast.LENGTH_LONG).show();
+                            finish();
                         }
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {

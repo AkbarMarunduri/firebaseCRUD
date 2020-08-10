@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ListView listView;
 
     private MahasiswaAdaptor adaptor;
-    private ArrayList<Mahasiswa> mahasiswaArrayList;
+    private ArrayList<Mahasiswa> mahasiswaList;
     DatabaseReference mReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btAdd.setOnClickListener(this);
 
         mReference = FirebaseDatabase.getInstance().getReference("mahasiswa");
-        mahasiswaArrayList = new ArrayList<>();
+        mahasiswaList = new ArrayList<>();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this,UpdateData.class);
-                intent.putExtra(UpdateData.EXTRA_MAHASISWA, mahasiswaArrayList.get(i));
+                intent.putExtra(UpdateData.EXTRA_MAHASISWA, mahasiswaList.get(i));
                 startActivity(intent);
             }
         });
@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mahasiswaArrayList.clear();
+                mahasiswaList.clear();
                 for (DataSnapshot maSnapshot : dataSnapshot.getChildren()) {
                     Mahasiswa mahasiswa = maSnapshot.getValue(Mahasiswa.class);
-                    mahasiswaArrayList.add(mahasiswa);
+                    mahasiswaList.add(mahasiswa);
                 }
                 MahasiswaAdaptor adaptor = new MahasiswaAdaptor(MainActivity.this);
-                adaptor.setMahasiswasList(mahasiswaArrayList);
+                adaptor.setMahasiswasList(mahasiswaList);
                 listView.setAdapter(adaptor);
             }
 
