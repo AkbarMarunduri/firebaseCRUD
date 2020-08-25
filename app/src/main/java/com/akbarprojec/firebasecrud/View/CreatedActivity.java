@@ -9,13 +9,15 @@ import android.widget.Toast;
 
 import com.akbarprojec.firebasecrud.Model.Mahasiswa;
 import com.akbarprojec.firebasecrud.R;
+import com.akbarprojec.firebasecrud.databinding.ActivityCreatedBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 public class CreatedActivity extends AppCompatActivity implements View.OnClickListener {
-private EditText edNim, edNama;
+    private EditText edNim, edNama;
     private Button btSave;
     private Mahasiswa mahasiswa;
 
@@ -25,14 +27,13 @@ private EditText edNim, edNama;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_created);
+        ActivityCreatedBinding binding= DataBindingUtil.setContentView(this,R.layout.activity_created);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        edNim = findViewById(R.id.edt_nim);
-        edNama = findViewById(R.id.edt_nama);
-        btSave = findViewById(R.id.btn_save);
-
+        edNim = binding.edtNim;
+        edNama = binding.edtNama;
+        btSave = binding.btnSave;
 
         btSave.setOnClickListener(this);
 
